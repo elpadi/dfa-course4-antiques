@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 03:58 PM
+-- Generation Time: Aug 13, 2018 at 06:29 PM
 -- Server version: 5.6.36
 -- PHP Version: 7.1.2
 
@@ -29,7 +29,14 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
   `categoryID` int(11) NOT NULL,
   `categoryName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`categoryID`, `categoryName`) VALUES
+(1, 'Furniture');
 
 -- --------------------------------------------------------
 
@@ -40,7 +47,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
 CREATE TABLE IF NOT EXISTS `compositions` (
   `compositionID` int(11) NOT NULL,
   `materialName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `compositions`
+--
+
+INSERT INTO `compositions` (`compositionID`, `materialName`) VALUES
+(1, 'Wood');
 
 -- --------------------------------------------------------
 
@@ -81,12 +95,20 @@ CREATE TABLE IF NOT EXISTS `items` (
   `title` varchar(255) NOT NULL,
   `isAvailable` int(11) NOT NULL,
   `description` text NOT NULL,
+  `price` decimal(11,2) NOT NULL,
   `year` int(11) NOT NULL,
   `categoryID` int(11) NOT NULL,
   `compositionID` int(11) NOT NULL,
   `originID` int(11) NOT NULL,
   `mainImageID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`itemID`, `title`, `isAvailable`, `description`, `price`, `year`, `categoryID`, `compositionID`, `originID`, `mainImageID`) VALUES
+(1, 'Victorian Wooden Full Size Headboard Set', 1, 'Dark wood tone Victorian style headboard and footboard set with ornate details.', 850.00, 1853, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -98,7 +120,14 @@ CREATE TABLE IF NOT EXISTS `origins` (
   `originID` int(11) NOT NULL,
   `place` varchar(255) NOT NULL,
   `era` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `origins`
+--
+
+INSERT INTO `origins` (`originID`, `place`, `era`) VALUES
+(1, 'Great Britain', 'Victorian');
 
 --
 -- Indexes for dumped tables
@@ -148,12 +177,12 @@ ALTER TABLE `origins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `compositions`
 --
 ALTER TABLE `compositions`
-  MODIFY `compositionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `compositionID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `dimensions`
 --
@@ -168,12 +197,12 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `origins`
 --
 ALTER TABLE `origins`
-  MODIFY `originID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `originID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

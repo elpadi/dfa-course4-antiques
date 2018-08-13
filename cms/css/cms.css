@@ -1,0 +1,21 @@
+#container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+button, textarea, input {
+  padding: 0 8px;
+  font-size: 1.3em;
+  line-height: 1.2;
+}
+textarea {
+  display: block;
+  height: 200px;
+  min-width: 300px;
+}
+button {
+  padding: 1em 1.5em;
+  border-radius: 5px;
+}
+form p:last-child {
+  text-align: right;
+}
