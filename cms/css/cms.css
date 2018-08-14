@@ -19,3 +19,7 @@ button {
 form p:last-child {
   text-align: right;
 }
+
+p.success { color: green; }
+p.warning { color: yellow; }
+p.error { color: red; }
