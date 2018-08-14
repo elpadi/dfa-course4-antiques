@@ -1,3 +1,5 @@
+@import "menu.css";
+
 #container {
   max-width: 400px;
   margin: 0 auto;
@@ -20,6 +22,14 @@ form p:last-child {
   text-align: right;
 }
 
-p.success { color: green; }
-p.warning { color: yellow; }
-p.error { color: red; }
+p.message {
+	padding: 1em 1.2em;
+	border-radius: 3px;
+}
+p.success { color: forestgreen; background-color: honeydew; }
+p.warning { color: yellow; background-color: lightsalmon; }
+p.error { color: crimson; background-color: lightpink; }
+
+.item-listing {
+	padding: 0;
+}
