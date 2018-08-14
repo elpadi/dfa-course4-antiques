@@ -11,7 +11,7 @@ $year = intval($_POST['year']);
 // Category Data
 $categoryName = mysqli_real_escape_string($conn, $_POST['categoryName']);
 // INSERT CATEGORY
-$query = "INSERTS INTO categories(categoryName) VALUES('$categoryName')";
+$query = "INSERT INTO categories(categoryName) VALUES('$categoryName')";
 $result = mysqli_query($conn, $query);
 // SAVE NEW CAT ID FOR ITEM
 $categoryID = mysqli_insert_id($conn);
@@ -30,6 +30,6 @@ $result = mysqli_query($conn, $query);
 $originID = mysqli_insert_id($conn);
 
 // INSERT ITEM
-$query = "INSERTS INTO items(title, description, isAvailable, price, year, categoryID, compositionID, originID) VALUES('$itemTitle','$itemDescription',$isAvailable,$price,$year,$categoryID,$compositionID,$originID)";
+$query = "INSERT INTO items(title, description, isAvailable, price, year, categoryID, compositionID, originID) VALUES('$itemTitle','$itemDescription',$isAvailable,$price,$year,$categoryID,$compositionID,$originID)";
 $result = mysqli_query($conn, $query);
 $itemID = mysqli_insert_id($conn);
