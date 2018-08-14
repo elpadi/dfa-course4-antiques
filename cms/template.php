@@ -9,6 +9,8 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
 </head>
 <body>
-  <div id="container"></div>
+  <div id="container">
+    <?php require('includes/menu.php'); ?>
+  </div>
 </body>
 </html>
