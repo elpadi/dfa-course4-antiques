@@ -13,17 +13,24 @@ ELSE:
 */
 require('../conn/connAntiques.php');
 
+// is there an itemID in the URL?
 $isEditing = isset($_GET['itemID']);
-$hasPostData = isset($_POST['title']);
+
+// is there any POST data? i.e. has the user submitted a form?
+$hasPostData = !empty($_POST);
 
 if ($isEditing) {
+  // if itemID is in the URL, go into "edit" mode.
   $pageTitle = "Edit Item $_GET[itemID]";
   if ($hasPostData) {
+    // if the user submitted the form include the edit proc code.
     require('includes/items/edit-proc.php');
   }
 } else {
+  // if itemID is in the URL, go into "add" mode.
   $pageTitle = "Add New Item";
   if ($hasPostData) {
+    // if the user submitted the form include the add proc code.
     require('includes/items/add-proc.php');
   }
 }
@@ -31,14 +38,19 @@ if ($isEditing) {
 // If user has submitted a form, create a result message
 if ($hasPostData) {
 	if ($result) {
+    // if we have a valid result...
 		if (mysqli_affected_rows($conn)) {
+      // if some rows were affected, then everything is perfect
 			$messageType = 'success';
+      // use a different success message for edits and adds
 			$message = $isEditing ? 'You edits were successfully saved.' : 'New item successfully created.';
 		} else {
+      // if no rows have been affected, issue a warning message
 			$messageType = 'warning';
 			$message = 'No new data was saved.';
 		}
 	} else {
+    // if we do not have a result, it must have been an error
 		$messageType = 'error';
 		$message = 'Data could not be saved. '.mysqli_error($conn);
 	}
@@ -61,11 +73,15 @@ if ($hasPostData) {
     
     <h1><?= $pageTitle; ?></h1>
     
-    <?php if ($hasPostData): ?>
-    <p class="message <?= $messageType; ?>"><?= $message; ?></p>
+    <?php
+      // if user has submitted a form, show the message created above
+      if ($hasPostData):
+    ?>
+      <p class="message <?= $messageType; ?>"><?= $message; ?></p>
     <?php endif; ?>
   
     <?php
+      // we always show one of the forms
       if ($isEditing) {
         require('includes/items/edit-form.php');
       } else {
