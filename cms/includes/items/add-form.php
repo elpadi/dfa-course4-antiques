@@ -7,7 +7,7 @@
 
   <p>Is Item Available: <label><input type="radio" name="isAvailable" value="yes"> Yes</label> <label><input type="radio" name="isAvailable" value="no"> No</label></p>
 
-  <p><label>Price: <input name="price" type="number"></label></p>
+  <p><label>Price: <input name="price" type="number" step="0.01"></label></p>
 
   <p><label>Year: <input name="year" type="number"></label></p>
 
