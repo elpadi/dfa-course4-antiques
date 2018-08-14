@@ -1,4 +1,3 @@
-<h1>Add Item</h1>
 <form method="post" action="">
 
   <p><label>Title: <input name="title"></label></p>
