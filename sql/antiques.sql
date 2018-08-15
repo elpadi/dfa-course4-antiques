@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 06:29 PM
+-- Generation Time: Aug 15, 2018 at 05:14 PM
 -- Server version: 5.6.36
 -- PHP Version: 7.1.2
 
@@ -29,14 +29,19 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
   `categoryID` int(11) NOT NULL,
   `categoryName` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`) VALUES
-(1, 'Furniture');
+(1, 'Furniture'),
+(2, ''),
+(3, 'Mask'),
+(4, 'kjh'),
+(5, 'Doors'),
+(6, 'Door');
 
 -- --------------------------------------------------------
 
@@ -47,14 +52,23 @@ INSERT INTO `categories` (`categoryID`, `categoryName`) VALUES
 CREATE TABLE IF NOT EXISTS `compositions` (
   `compositionID` int(11) NOT NULL,
   `materialName` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `compositions`
 --
 
 INSERT INTO `compositions` (`compositionID`, `materialName`) VALUES
-(1, 'Wood');
+(1, 'Wood'),
+(2, ''),
+(3, ''),
+(4, ''),
+(5, ''),
+(6, ''),
+(7, ''),
+(8, 'Gold'),
+(9, 'Silver'),
+(10, 'Dark Wood');
 
 -- --------------------------------------------------------
 
@@ -63,14 +77,20 @@ INSERT INTO `compositions` (`compositionID`, `materialName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `dimensions` (
-  `dimensionID` int(11) NOT NULL,
   `itemID` int(11) NOT NULL,
-  `width` int(11) NOT NULL,
-  `height` int(11) NOT NULL,
-  `depth` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
+  `width` decimal(11,2) NOT NULL,
+  `height` decimal(11,2) NOT NULL,
+  `depth` decimal(11,2) NOT NULL,
+  `weight` decimal(11,2) NOT NULL,
   `dimensionsDesc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dimensions`
+--
+
+INSERT INTO `dimensions` (`itemID`, `width`, `height`, `depth`, `weight`, `dimensionsDesc`) VALUES
+(3, 80.75, 24.00, 2.50, 42.00, '79.5 in. H x 24.25 in. W x 1.75 in. D');
 
 -- --------------------------------------------------------
 
@@ -101,14 +121,16 @@ CREATE TABLE IF NOT EXISTS `items` (
   `compositionID` int(11) NOT NULL,
   `originID` int(11) NOT NULL,
   `mainImageID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`itemID`, `title`, `isAvailable`, `description`, `price`, `year`, `categoryID`, `compositionID`, `originID`, `mainImageID`) VALUES
-(1, 'Victorian Wooden Full Size Headboard Set', 1, 'Dark wood tone Victorian style headboard and footboard set with ornate details.', 850.00, 1853, 1, 1, 1, 0);
+(1, 'Victorian Wooden Full Size Headboard Set', 0, 'Dark wood tone Victorian style headboard and footboard set with ornate details.', 950.56, 1753, 1, 1, 1, 0),
+(2, 'Victorian Wooden Full Size Headboard Set', 0, 'Dark wood tone Victorian style headboard and footboard set with ornate details.', 950.55, 1754, 2, 2, 2, 0),
+(3, 'Dark Wood Tone Antique Door', 1, 'Antique dark wood tone wood door with two small vertical panels and two long vertical panels. One available.', 195.00, 1923, 6, 10, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -120,14 +142,21 @@ CREATE TABLE IF NOT EXISTS `origins` (
   `originID` int(11) NOT NULL,
   `place` varchar(255) NOT NULL,
   `era` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `origins`
 --
 
 INSERT INTO `origins` (`originID`, `place`, `era`) VALUES
-(1, 'Great Britain', 'Victorian');
+(1, 'Great Britain', 'Victorian'),
+(2, 'China', 'Ming Dinasty'),
+(3, '', ''),
+(4, '', ''),
+(5, '', ''),
+(6, '', ''),
+(7, 'Europe', 'Post War'),
+(8, 'Somewhere', 'Sometime');
 
 --
 -- Indexes for dumped tables
@@ -149,7 +178,7 @@ ALTER TABLE `compositions`
 -- Indexes for table `dimensions`
 --
 ALTER TABLE `dimensions`
-  ADD PRIMARY KEY (`dimensionID`);
+  ADD PRIMARY KEY (`itemID`);
 
 --
 -- Indexes for table `images`
@@ -177,17 +206,12 @@ ALTER TABLE `origins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `compositions`
 --
 ALTER TABLE `compositions`
-  MODIFY `compositionID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `dimensions`
---
-ALTER TABLE `dimensions`
-  MODIFY `dimensionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `compositionID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `images`
 --
@@ -197,12 +221,12 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `origins`
 --
 ALTER TABLE `origins`
-  MODIFY `originID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `originID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

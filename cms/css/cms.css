@@ -18,7 +18,7 @@ button {
   padding: 1em 1.5em;
   border-radius: 5px;
 }
-form p:last-child {
+form > p:last-child {
   text-align: right;
 }
 
@@ -32,4 +32,13 @@ p.error { color: crimson; background-color: lightpink; }
 
 .item-listing {
 	padding: 0;
+}
+
+.has-create-inputs:not(.show-create) ~ label,
+.has-create-inputs:not(.show-create) ~ br {
+  display: none;
+}
+
+fieldset {
+  margin-bottom: 1em;
 }

@@ -12,5 +12,6 @@
   <div id="container">
     <?php require('includes/menu.php'); ?>
   </div>
+  <script src="js/main.js"></script>
 </body>
 </html>
