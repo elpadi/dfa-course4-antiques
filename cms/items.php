@@ -1,6 +1,6 @@
 <?php
 require('../conn/connAntiques.php');
-$query = "SELECT * FROM items";
+$query = "SELECT items.*, imageName FROM items LEFT JOIN images ON mainImageID=imageID";
 $result = mysqli_query($conn, $query);
 ?><!DOCTYPE html>
 <html lang="en-us">
@@ -25,7 +25,12 @@ $result = mysqli_query($conn, $query);
       <?php while ($row = mysqli_fetch_array($result)): ?>
       <li>
         <h2><a href="item.php?itemID=<?= $row['itemID']; ?>"><?= $row['title']; ?></a></h2>
-        <p>Price: <?= $row['price']; ?><br>Year: <?= $row['year']; ?></p>
+        <p>
+          <?php if ($row['mainImageID'] != 0) printf('<img src="../img/items/%s" alt="">', $row['imageName']); ?>
+          Price: <?= $row['price']; ?>
+          <br>
+          Year: <?= $row['year']; ?>
+        </p>
         <p><?= $row['description']; ?></p>
       </li>
       <?php endwhile; ?>

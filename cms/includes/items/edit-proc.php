@@ -17,6 +17,26 @@ $dimensionsDesc = mysqli_real_escape_string($conn, $_POST['dimensionsDesc']);
 $query = "REPLACE INTO dimensions(itemID,width,height,depth,weight,dimensionsDesc) VALUES ($itemID,$width,$height,$depth,$weight,'$dimensionsDesc')";
 mysqli_query($conn, $query);
 
+if (!empty($_FILES)) {
+  // use the realpath function to get the full directory name without dots. not required, but makes the final path more clear for debugging.
+  $imagePath = realpath('..').'/img/items/' . $_FILES['image']['name'];
+  move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+  $imageName = $_FILES['image']['name'];
+  $query = "INSERT INTO images(itemID, imageName) VALUES($itemID, '$imageName')";
+  mysqli_query($conn, $query);
+  $imageID = mysqli_insert_id($conn);
+  if (isset($_POST['isMainPic'])) {
+    // make the inserted image the main pic
+    $query = "UPDATE items SET mainImageID=$imageID WHERE itemID=$itemID";
+    mysqli_query($conn, $query);
+  }
+}
+/*
+IF image has been selected for uploading:
+  do the image upload (move uploaded file to img/items folder)
+  save the image name to the database
+*/
+
 // Category Data
 $categoryID = intval($_POST['categoryID']);
 if ($categoryID == -1) {

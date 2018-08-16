@@ -6,9 +6,13 @@ $query = "
   WHERE items.itemID=$itemID";
 $result = mysqli_query($conn, $query);
 $item = mysqli_fetch_array($result);
+
+$query = "SELECT * FROM images WHERE itemID=$itemID";
+$imgResult = mysqli_query($conn, $query);
+
 if ($item):
 ?>
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 
 	<p><label>Item ID: <input name="itemID" value="<?= $itemID; ?>" readonly></label></p>
 
@@ -22,6 +26,17 @@ if ($item):
 
 	<p><label>Year: <input name="year" type="number" value="<?= $item['year']; ?>"></label></p>
 
+  <fieldset>
+    <legend>Images</legend>
+    <!-- SHOW IMAGES THAT HAVE BEEN UPLOADED -->
+    <p><?php while ($img = mysqli_fetch_array($imgResult)) printf('<img src="../img/items/%s" alt="">', $img['imageName']); ?></p>
+    
+    <!-- ADD INPUT FIELD FOR IMAGES -->
+    <p><input type="file" name="image" accept=".png, .jpg, .jpeg">
+      <br><br>
+    <label><input type="checkbox" name="isMainPic" value="yes" > Make it the main image?</label></p>
+  </fieldset>
+  
   <fieldset>
     <legend>Dimensions</legend>
     <p><label>Width (in): <input name="width" type="number" step="0.01" value="<?= $item['width']; ?>"></label></p>
