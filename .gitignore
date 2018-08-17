@@ -1,3 +1,4 @@
 # here is a comment in the first line
 img/
 sql/antiquesology.sql
+# you can write comments starting with a hash
